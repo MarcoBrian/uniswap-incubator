@@ -4,3 +4,9 @@
 [submodule "points-hook/lib/v4-periphery"]
 	path = points-hook/lib/v4-periphery
 	url = https://github.com/Uniswap/v4-periphery
+[submodule "internal-swap-pool/lib/forge-std"]
+	path = internal-swap-pool/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "internal-swap-pool/lib/v4-periphery"]
+	path = internal-swap-pool/lib/v4-periphery
+	url = https://github.com/Uniswap/v4-periphery
