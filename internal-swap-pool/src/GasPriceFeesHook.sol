@@ -16,9 +16,9 @@ contract GasPriceFeesHook is BaseHook {
     using LPFeeLibrary for uint24; 
     error MustUseDynamicFee(); 
     // average gas price 
-    uint256 movingAverageGasPrice ;
+    uint128 public movingAverageGasPrice ;
     // number of transactions recorded
-    uint256 movingAverageGasPriceCount;  
+    uint104 public movingAverageGasPriceCount;  
 
     // Default fee of the pool (0.5% fees)
     uint24 public constant BASE_FEE = 5000; 
@@ -28,7 +28,22 @@ contract GasPriceFeesHook is BaseHook {
     }
 
     function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
-        // TODO 
+        return Hooks.Permissions({
+            beforeInitialize: true,
+            afterInitialize: false,
+            beforeAddLiquidity: false,
+            beforeRemoveLiquidity: false,
+            afterAddLiquidity: false,
+            afterRemoveLiquidity: false,
+            beforeSwap: true,
+            afterSwap: true,
+            beforeDonate: false,
+            afterDonate: false,
+            beforeSwapReturnDelta: false,
+            afterSwapReturnDelta: false,
+            afterAddLiquidityReturnDelta: false,
+            afterRemoveLiquidityReturnDelta: false
+        });
     }
     function _beforeInitialize(address, PoolKey calldata key, uint160) internal pure override returns (bytes4){
         //validate pool keys being added 
